@@ -78,6 +78,8 @@ def main():
             
             # adding the freed space to total_space
             total_space += space_freed
+            
+        total_space = round(total_space, 2)
         log_event()
 
 

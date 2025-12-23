@@ -1,12 +1,73 @@
-# Auto-Junk-Remover
-This is a single Python script that deletes specific folders. Upon deletion, the script logs (creates, if the log file does not exist) detailed data about the deletions in a log.csv file.
-<h3>How does it work?</h3>
-The script at first looks for a "log.csv" in its local directory. If there is no "log.csv" file, then it automatically creates one. Then, from that log file, it decides whether to start deleting folders in this run cycle. Then, it counts the total size for every file that can be deleted and deletes the file. After that, the script logs the event in the "log.csv" file.
+# CronSweeper 🧹
 
-<h3>How to use?</h3>
-0. Download & Install the dotenv module with the help of the terminal using this command: "pip install dotenv"<br> 
-1. Clone the GitHub repository.<br>
-2. Create a ".env" file in the same directory and open it. <br>
-3. Inside the .env file, write: FOLDER_PATH=. Add the paths inside the double inverted commas. Be sure to separate the paths with a comma(,) in between and ensure that there are no whitespaces. <br>
-4. Open the Task Scheduler. (If you are not using Windows, please follow the instructions for your operating system.)<br>
-5. Create a new task for the script. (Trigger can be whatever the user wants. But it's recommended to run this script at least once every week.)<br>
+**CronSweeper** is a lightweight, automated utility designed to keep your system clean by periodically purging specified directories. It is perfect for managing temporary folders, download directories, or any location that accumulates "junk" files over time.
+
+Built with Python, it tracks the amount of disk space reclaimed with every run, providing you with a detailed log of your storage savings.
+
+## ✨ Key Features
+
+*   **🗑️ Automated Cleanup**: Recursively removes all files and subdirectories in target locations.
+*   **📊 Smart Logging**: Maintains a `log.csv` history of every cleanup, tracking total space freed (in MB).
+*   **🛡️ Daily Safety Lock**: Automatically prevents multiple runs on the same day to avoid redundant processing.
+*   **⚙️ Flexible Configuration**: Easily manage multiple target directories via a simple `.env` file.
+*   **🪟 Windows Optimized**: Designed with Windows file systems in mind (handles `.pyw` execution and path parsing).
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+*   Python 3.6+
+*   `pip` (Python package manager)
+
+### Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/sadmanhsakib/CronSweeper.git
+    cd CronSweeper
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    pip install python-dotenv
+    ```
+
+3.  **Configure Environment**
+    Create a `.env` file in the root directory. Add the `FOLDER_PATH` variable with the absolute paths of the folders you want to clean, separated by commas.
+
+    **Example `.env`:**
+    ```env
+    FOLDER_PATH=C:\Users\Name\Downloads\Temp,C:\Windows\Temp\Junk
+    ```
+    > **⚠️ WARNING:** CronSweeper deletes **ALL** contents in these folders. Ensure you do not include important directories like your Desktop or Documents.
+
+## 📖 Usage
+
+### Manual Run
+You can run the script manually to test your configuration:
+```bash
+python main.pyw
+```
+
+### Automating with Task Scheduler (Windows)
+To make CronSweeper truly "set and forget," add it to Windows Task Scheduler:
+
+1.  Open **Task Scheduler**.
+2.  Click **Create Basic Task** and name it "CronSweeper".
+3.  Set the **Trigger** to "Daily" or "Weekly".
+4.  For **Action**, select "Start a program".
+5.  **Program/script**: Browse to your `pythonw.exe` (usually in your Python installation folder).
+6.  **Add arguments**: The full path to `main.pyw` (e.g., `C:\Path\To\CronSweeper\main.pyw`).
+7.  **Start in**: The full path to the CronSweeper folder (e.g., `C:\Path\To\CronSweeper`).
+
+## 📊 Log Format
+The `log.csv` file tracks your cleanup history with the following columns:
+*   `Lifetime-Counter`: Total number of times the script has run.
+*   `Deletion-Date`: The date of the cleanup.
+*   `Total`: Total space freed in that run (MB).
+*   `[Folder Name]`: Space freed from each specific folder.
+
+## 🤝 Contributing
+This project is developed and maintained solely by **[Sadman Sakib](https://github.com/sadmanhsakib)**.
+
+Contributions are welcome! If you have ideas for cross-platform support or better logging, feel free to fork the repo and submit a pull request.
