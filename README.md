@@ -1,3 +1,6 @@
+> **⚠️ ARCHIVED PROJECT**  
+> This project is archived and now part of my [Automation-Toolbox](https://github.com/sadmanhsakib/Automation-Toolbox) repository.
+
 # CronSweeper 🧹
 
 **CronSweeper** is a lightweight, automated utility designed to keep your system clean by periodically purging specified directories. It is perfect for managing temporary folders, download directories, or any location that accumulates "junk" files over time.
@@ -69,5 +72,3 @@ The `log.csv` file tracks your cleanup history with the following columns:
 
 ## 🤝 Contributing
 This project is developed and maintained solely by **[Sadman Sakib](https://github.com/sadmanhsakib)**.
-
-Contributions are welcome! If you have ideas for cross-platform support or better logging, feel free to fork the repo and submit a pull request.
