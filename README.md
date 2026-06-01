@@ -1,9 +1,9 @@
 > **⚠️ ARCHIVED PROJECT**  
-> This project is archived and now part of my [Automation-Toolbox](https://github.com/sadmanhsakib/Automation-Toolbox) repository.
+> This project is archived and now part of my [automation-toolbox](https://github.com/sadmanhsakib/automation-toolbox) repository.
 
-# CronSweeper 🧹
+# cron-sweeper 🧹
 
-**CronSweeper** is a lightweight, automated utility designed to keep your system clean by periodically purging specified directories. It is perfect for managing temporary folders, download directories, or any location that accumulates "junk" files over time.
+**cron-sweeper** is a lightweight, automated utility designed to keep your system clean by periodically purging specified directories. It is perfect for managing temporary folders, download directories, or any location that accumulates "junk" files over time.
 
 Built with Python, it tracks the amount of disk space reclaimed with every run, providing you with a detailed log of your storage savings.
 
@@ -26,8 +26,8 @@ Built with Python, it tracks the amount of disk space reclaimed with every run, 
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/sadmanhsakib/CronSweeper.git
-    cd CronSweeper
+    git clone https://github.com/sadmanhsakib/cron-sweeper.git
+    cd cron-sweeper
     ```
 
 2.  **Install Dependencies**
@@ -42,7 +42,7 @@ Built with Python, it tracks the amount of disk space reclaimed with every run, 
     ```env
     FOLDER_PATH=C:\Users\Name\Downloads\Temp,C:\Windows\Temp\Junk
     ```
-    > **⚠️ WARNING:** CronSweeper deletes **ALL** contents in these folders. Ensure you do not include important directories like your Desktop or Documents.
+    > **⚠️ WARNING:** cron-sweeper deletes **ALL** contents in these folders. Ensure you do not include important directories like your Desktop or Documents.
 
 ## 📖 Usage
 
@@ -53,15 +53,15 @@ python main.pyw
 ```
 
 ### Automating with Task Scheduler (Windows)
-To make CronSweeper truly "set and forget," add it to Windows Task Scheduler:
+To make cron-sweeper truly "set and forget," add it to Windows Task Scheduler:
 
 1.  Open **Task Scheduler**.
-2.  Click **Create Basic Task** and name it "CronSweeper".
+2.  Click **Create Basic Task** and name it "cron-sweeper".
 3.  Set the **Trigger** to "Daily" or "Weekly".
 4.  For **Action**, select "Start a program".
 5.  **Program/script**: Browse to your `pythonw.exe` (usually in your Python installation folder).
-6.  **Add arguments**: The full path to `main.pyw` (e.g., `C:\Path\To\CronSweeper\main.pyw`).
-7.  **Start in**: The full path to the CronSweeper folder (e.g., `C:\Path\To\CronSweeper`).
+6.  **Add arguments**: The full path to `main.pyw` (e.g., `C:\Path\To\cron-sweeper\main.pyw`).
+7.  **Start in**: The full path to the cron-sweeper folder (e.g., `C:\Path\To\cron-sweeper`).
 
 ## 📊 Log Format
 The `log.csv` file tracks your cleanup history with the following columns:
