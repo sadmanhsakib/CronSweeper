@@ -36,12 +36,11 @@ Built with Python, it tracks the amount of disk space reclaimed with every run, 
     ```
 
 3.  **Configure Environment**
-    Create a `.env` file in the root directory. Add the `FOLDER_PATH` variable with the absolute paths of the folders you want to clean, separated by commas.
-
-    **Example `.env`:**
-    ```env
-    FOLDER_PATH=C:\Users\Name\Downloads\Temp,C:\Windows\Temp\Junk
+    ```bash
+    cp example.env .env
     ```
+    Inside the `.env` file's `DIR_PATHS=` section, write the absolute path of the folders you want to clean periodically, separated by a comma(,)
+    <br>
     > **⚠️ WARNING:** cron-sweeper deletes **ALL** contents in these folders. Ensure you do not include important directories like your Desktop or Documents.
 
 ## 📖 Usage
@@ -69,6 +68,3 @@ The `log.csv` file tracks your cleanup history with the following columns:
 *   `Deletion-Date`: The date of the cleanup.
 *   `Total`: Total space freed in that run (MB).
 *   `[Folder Name]`: Space freed from each specific folder.
-
-## 🤝 Contributing
-This project is developed and maintained solely by **[Sadman Sakib](https://github.com/sadmanhsakib)**.

@@ -4,23 +4,21 @@ import shutil
 import datetime
 from dotenv import load_dotenv
 
-# loading the .env file for accessing it
-load_dotenv(".env")
+load_dotenv()
+
+PATHS = os.getenv("DIR_PATHS").split(",")
 
 counter = 0
 previous_deletion = ""
 total_space = 0.0
 today = datetime.datetime.now().date().strftime("%Y-%m-%d")
 
-# getting the data from the .env file
-path_list = os.getenv("FOLDER_PATH").split(',')
-
 storage = {}
 
 # adding the path and storage on the dict
-for path in path_list:
+for path in PATHS:
     storage.update({path: 0.0})
-    
+
 log_file = ""
 
 
@@ -29,12 +27,13 @@ def main():
     global previous_deletion
     global total_space
     global log_file
+    
+    if PATHS == [""]:
+        raise ValueError("No paths provided. Please add paths to the .env file.")
 
-    # check for log file
     if not (os.path.exists("log.csv")):
-        # creates a new log file
         with open("log.csv", 'w') as file:
-            # writing the header
+            # header for the log file, adding the path names to the header as well
             header = "Lifetime-Counter,Deletion-Date,Total"
             
             for key in storage:
@@ -46,9 +45,8 @@ def main():
     log_file = "log.csv"
     
     with open(log_file, 'r') as file:
-        lines = file.readlines()
+        lines: list[str] = file.readlines()
         
-        # checking if the program was ever run before
         if len(lines) == 1:
             # for the first run
             counter = 1
@@ -83,7 +81,7 @@ def main():
         log_event()
 
 
-def delete_contents(path):
+def delete_contents(path: str) -> float:
     if os.path.exists(path):
         space_freed = 0.0
         
@@ -99,12 +97,10 @@ def delete_contents(path):
             try:
                 # os.remove only deletes single files and shutil.rmtree only deletes entire directories
                 if os.path.isfile(file_path) or os.path.islink(file_path):
-                    # getting the size of the file that is about to be
                     current_size = os.path.getsize(file_path)
 
                     os.remove(file_path)
                 elif os.path.isdir(file_path):
-                    # adding the total size for each subfolder
                     current_size = get_dir_size(file_path)
 
                     shutil.rmtree(file_path)
@@ -121,8 +117,7 @@ def delete_contents(path):
         return space_freed
 
 
-# calls for the function recursively until every file size is counted
-def get_dir_size(path):
+def get_dir_size(path: str) -> float:
     dir_size = 0.0
 
     # os.walk() always returns a three value tuple. 
